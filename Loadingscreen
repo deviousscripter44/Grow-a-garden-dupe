@@ -1,0 +1,33 @@
+local a,b,c,d,e,f,g,h=300,0,0,0,0,0,0,0
+function love.load()
+ love.window.setFullscreen(true)
+ love.graphics.setBackgroundColor(0,0,0)
+ d=love.graphics.newFont(32)
+ love.graphics.setFont(d)
+end
+
+function love.update(i)
+ if c<100 then
+  b=b+i
+  c=math.min(100,(b/a)*100)
+ end
+end
+
+function love.draw()
+ e,f=love.graphics.getDimensions()
+ love.graphics.setColor(0,0,0,0.85)
+ love.graphics.rectangle("fill",0,0,e,f)
+ love.graphics.setColor(1,1,1,1)
+ g="Bypassing the anticheat..."
+ h=d:getWidth(g)
+ love.graphics.print(g,(e-h)/2,f/2-100)
+ local j,k,l,m=e*0.6,40,(e-e*0.6)/2,f/2
+ love.graphics.setColor(0.2,0.2,0.2,1)
+ love.graphics.rectangle("fill",l,m,j,k)
+ love.graphics.setColor(0,1,0,1)
+ love.graphics.rectangle("fill",l,m,j*(c/100),k)
+ love.graphics.setColor(1,1,1,1)
+ local n=string.format("%.1f%%",c)
+ local o=d:getWidth(n)
+ love.graphics.print(n,(e-o)/2,m+60)
+end
